@@ -37,6 +37,11 @@ orderSchema.virtual('orderId').get(function() {
   return this.id.slice(-6).toUpperCase();
 });
 
+orderSchema.statics.getOrders = function(userId) {
+  // Return all paid orders (isPaid = true)
+  return this.find({user: userId, isPaid: true}).exec();
+};
+
 orderSchema.statics.getCart = function(userId) {
   // 'this' refers to the Order model
   return this.findOneAndUpdate(

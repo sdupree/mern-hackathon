@@ -2,11 +2,19 @@ const Order = require('../../models/order');
 // const Item = require('../../models/item');
 
 module.exports = {
+  orders,
   cart,
   addToCart,
   setItemQtyInCart,
   checkout,
 };
+
+// A cart is the unpaid order for a user
+async function orders(req, res) {
+  const cart = await Order.getOrders(req.user._id);
+  res.json(cart);
+}
+
 
 // A cart is the unpaid order for a user
 async function cart(req, res) {
