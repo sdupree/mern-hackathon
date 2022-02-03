@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './OrderHistoryPage.css';
 import Logo from '../../components/Logo/Logo';
@@ -7,6 +8,18 @@ import OrderDetail from '../../components/OrderDetail/OrderDetail';
 import * as ordersAPI from '../../utilities/orders-api';
 
 export default function OrderHistoryPage({ user, setUser }) {
+  const [orderItems, setOrderItems] = useState([]);
+  const [activeOrder, setActiveOrder] = useState('');
+
+  useEffect(function() {
+    async function getOrders() {
+      const orders = await ordersAPI.getOrders();
+      console.log("OrderHistoryPage TWO", orders);
+      setOrderItems(orders);
+    }
+    getOrders();
+  }, []);
+
   return (
     <main className="OrderHistoryPage">
       <aside>
@@ -15,8 +28,8 @@ export default function OrderHistoryPage({ user, setUser }) {
         <UserLogOut user={user} setUser={setUser} />
       </aside>
 
-      <OrderList
-        // menuItems={menuItems.filter(item => item.category.name === activeCat)}
+      <OrderList 
+        orderItems={orderItems}
         // handleAddToOrder={handleAddToOrder}
       />
       <OrderDetail 

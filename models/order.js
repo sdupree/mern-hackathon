@@ -37,9 +37,10 @@ orderSchema.virtual('orderId').get(function() {
   return this.id.slice(-6).toUpperCase();
 });
 
-orderSchema.statics.getOrders = function(userId) {
+orderSchema.statics.getOrders = async function(userId) {
   // Return all paid orders (isPaid = true)
-  return this.find({user: userId, isPaid: true}).exec();
+  const orders = await this.find({user: userId, isPaid: true}).exec();
+  return orders;
 };
 
 orderSchema.statics.getCart = function(userId) {

@@ -11,8 +11,8 @@ module.exports = {
 
 // A cart is the unpaid order for a user
 async function orders(req, res) {
-  const cart = await Order.getOrders(req.user._id);
-  res.json(cart);
+  const orders = await Order.getOrders(req.user._id);
+  res.json(orders);
 }
 
 

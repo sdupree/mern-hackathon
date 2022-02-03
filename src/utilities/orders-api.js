@@ -4,7 +4,9 @@ const BASE_URL = '/api/orders';
 
 // Get orders.
 export function getOrders() {
-  return sendRequest(BASE_URL);
+  const orders = sendRequest(BASE_URL);
+  console.log("frontend api orders", orders);
+  return orders;
 }
 
 // Retrieve an unpaid order for the logged in user
