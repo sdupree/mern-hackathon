@@ -9,16 +9,19 @@ import * as ordersAPI from '../../utilities/orders-api';
 
 export default function OrderHistoryPage({ user, setUser }) {
   const [orderItems, setOrderItems] = useState([]);
-  const [activeOrder, setActiveOrder] = useState('');
+  const [activeOrder, setActiveOrder] = useState(null);
 
   useEffect(function() {
     async function getOrders() {
       const orders = await ordersAPI.getOrders();
-      console.log("OrderHistoryPage TWO", orders);
       setOrderItems(orders);
     }
     getOrders();
   }, []);
+
+  async function handleShowOrder(order) {
+    setActiveOrder(order);
+  }
 
   return (
     <main className="OrderHistoryPage">
@@ -30,11 +33,11 @@ export default function OrderHistoryPage({ user, setUser }) {
 
       <OrderList 
         orderItems={orderItems}
-        // handleAddToOrder={handleAddToOrder}
+        handleShowOrder={handleShowOrder}
       />
       <OrderDetail 
         // handleChangeQty={handleChangeQty} 
-        // order={cart} 
+        order={activeOrder} 
         // handleCheckout={handleCheckout}  
       />
 
