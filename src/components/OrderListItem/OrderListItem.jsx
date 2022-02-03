@@ -5,10 +5,14 @@ export default function OrderListItem({ orderItem, handleShowOrder }) {
 
   return (
     <div className="OrderListItem" onClick={() => handleShowOrder(orderItem)}>
-      <div className="orderId">{orderItem.orderId}</div>
-      <div className="orderTotal">{orderItem.orderTotal}</div>
-      <div className="totalQty">{orderItem.totalQty}</div>
-      <div className="orderDate">{orderDate}</div>
+      <div className="left">
+        <div className="orderId">Order Id: <span className="orderIdText">{orderItem.orderId}</span></div>
+        <div className="orderDate bottom">{orderDate}</div>
+      </div>
+      <div className="right">
+        <div className="orderTotal">${orderItem.orderTotal.toFixed(2)}</div>
+        <div className="totalQty bottom">{orderItem.totalQty} item{orderItem.totalQty > 1 && 's'}</div>
+      </div>
     </div>
   );
 }

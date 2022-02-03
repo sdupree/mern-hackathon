@@ -12,29 +12,15 @@
   font-size: 4vmin;
 }
 
-.OrderListItem .emoji {
-  height: 8vw;
-  width: 8vw;
-  font-size: 4vw;
-  background-color: var(--tan-1);
-  border: .1vmin solid var(--tan-3);
-  border-radius: 1vmin;
+
+.OrderListItem .right {
+  text-align: right;
 }
 
-.OrderListItem .buy {
-  display: flex;
-  flex-direction: column;
-}
-
-.OrderListItem .buy span {
+.OrderListItem .bottom {
   font-size: 1.7vw;
-  text-align: center;
-  color: var(--text-light);
 }
 
-.OrderListItem .name {
-  font-size: 2vw;
-  text-align: center;
-  color: var(--text-light);
+.OrderListItem .orderIdText {
+  font-weight: 600;
 }
-
