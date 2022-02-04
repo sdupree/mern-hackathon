@@ -15,6 +15,7 @@ export default function OrderHistoryPage({ user, setUser }) {
     async function getOrders() {
       const orders = await ordersAPI.getOrders();
       setOrderItems(orders);
+      setActiveOrder(orders[orders.length - 1]);
     }
     getOrders();
   }, []);
